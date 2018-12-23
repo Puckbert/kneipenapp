@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button type="submit" onclick="sendRequest()">Sende Standort</button>
+</body>
+</html>
+
+<script>
+    function sendRequest(){
+        if(navigator.geolocation){
+            console.log(navigator.geolocation.getCurrentPosition(showPosition));
+        }
+    }
+
+    function showPosition(position) {
+        //radius auf 2km
+        
+        radius = 500        
+        console.log(position.coords.latitude + " AND " + position.coords.longitude);
+        fetch('http://localhost:5000/getKneipeInUmkreis?lng='+position.coords.longitude+'&lat='+position.coords.latitude+'&rad='+radius)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+</script>
