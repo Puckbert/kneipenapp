@@ -15,7 +15,7 @@ const kneipeSchema = Joi.object().keys({
     name: Joi.string().required(),
     oeffnungszeiten: Joi.array().items(Joi.string()),
     geometry: geoSchema
-}) ;
+});
 
 const app = express();
 const kneipen = kneipenDB.get('kneipen');
@@ -23,23 +23,31 @@ app.use(cors());
 app.use(morgan('tiny'));
 
 app.get('/', (req, res) => {
-   res.json({
-       message: 'WORKS!'
-   });
+    res.json({
+        message: 'WORKS!'
+    });
 });
 
 app.get('/getKneipeVonName', (req, res) => {
-    kneipen.find({ name: req.query.name }).then(kneipe => {
+    kneipen.find({
+        name: req.query.name
+    }).then(kneipe => {
         res.send(kneipe);
     })
 });
 
-app.get('/getKneipeInUmkreis', (req, res) => {    
-    kneipen.geoNear(
-        {type: 'Point', coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)]},
-        {maxDistance: parseFloat(req.query.rad), spherical: true}
-    ).then((kneipenListe) => {
+app.get('/getKneipeInUmkreis', (req, res) => {
+    kneipen.geoNear({
+        type: 'Point',
+        coordinates: [parseFloat(req.query.lat), parseFloat(req.query.lng)]
+    }, {
+        maxDistance: parseFloat(req.query.rad),
+        spherical: true
+    }).then((kneipenListe) => {
         res.send(kneipenListe);
+    }).catch(error => {
+        console.log('CAUGHT!');
+        
     });
 });
 
@@ -49,7 +57,6 @@ app.get('/alleKneipen', (req, res) => {
     })
 })
 
-app.listen(PORT, () =>{
-    console.log('Listening On Port: '+PORT);
+app.listen(PORT, () => {
+    console.log('Listening On Port: ' + PORT);
 });
-

@@ -58,6 +58,15 @@ db.kneipen.insert([{
             [50.812540, 6.968220]
     },
     oeffnungszeiten: [
+    
+	],
+    tags: [
+	    'Biergarten',
+        'Bürgerlich',
+        'Gaffel',
+		'Weihnachtsmarkt'
+    ]
+}])
         
     ],
     tags: [

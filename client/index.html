@@ -7,28 +7,34 @@
     <title>Document</title>
 </head>
 <body>
+    Radius: <input type="text" name="" id="radius">
     <button type="submit" onclick="sendRequest()">Sende Standort</button>
+    <pre id="output"></pre>
 </body>
 </html>
 
 <script>
     function sendRequest(){
         if(navigator.geolocation){
-            console.log(navigator.geolocation.getCurrentPosition(showPosition));
+            navigator.geolocation.getCurrentPosition(showPosition);
         }
     }
 
     function showPosition(position) {
         //radius auf 2km
-        
-        radius = 500        
+        document.getElementById("output").innerHTML = "";
+
+        radius = document.getElementById("radius").value;       
         console.log(position.coords.latitude + " AND " + position.coords.longitude);
         fetch('http://localhost:5000/getKneipeInUmkreis?lng='+position.coords.longitude+'&lat='+position.coords.latitude+'&rad='+radius)
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
+                console.log("HUHUHUH");
+                
+                console.log(JSON.stringify(data));
+                document.getElementById("output").innerHTML = JSON.stringify(data, undefined, 2);
             })
             .catch((error) => {
                 console.error(error);
