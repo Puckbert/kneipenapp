@@ -47,7 +47,6 @@ app.get('/getKneipeInUmkreis', (req, res) => {
         res.send(kneipenListe);
     }).catch(error => {
         console.log('CAUGHT!');
-        
     });
 });
 
