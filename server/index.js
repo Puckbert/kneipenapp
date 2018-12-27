@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const Joi = require('joi');
 
-const PORT = 5000;
+const PORT = 8080;
 
 const geoSchema = Joi.object().keys({
     type: Joi.string().default('Point'),
@@ -52,6 +52,7 @@ app.get('/getKneipeInUmkreis', (req, res) => {
 
 app.get('/alleKneipen', (req, res) => {
     kneipen.find().then(alleKneipen => {
+        console.log(alleKneipen);
         res.send(alleKneipen);
     })
 })
