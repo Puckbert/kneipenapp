@@ -23,11 +23,13 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
     initPlatformState();
 
     _locationSubscription =
-        _location.onLocationChanged().listen((Map<String,double> result) {
-          setState(() {
-            _currentLocation = result;
-          });
+        _location.onLocationChanged().listen((Map<String, double> result) {
+      if (this.mounted) {
+        setState(() {
+          _currentLocation = result;
         });
+      }
+    });
   }
 
   initPlatformState() async {
@@ -65,14 +67,12 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
             _permission ? 'Has permission : Yes' : "Has permission : No")));
 
     return new MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         home: new Scaffold(
             body: new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: widgets,
-              )
-            )
-    );
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: widgets,
+        )));
   }
 }
