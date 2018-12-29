@@ -1,0 +1,72 @@
+[
+    {
+    "_id": "5c1f877f76efb21fa2da44cf",
+    "name": "Waage",
+    "geometry": {
+    "type": "Point",
+    "coordinates": [
+    50.82603,
+    6.98286
+    ]
+    },
+    "oeffnungszeiten": [ ],
+    "tags": [
+    "Hurensohn",
+    "Hurentochter",
+    "Ficker"
+    ]
+    },
+    {
+    "_id": "5c1f877f76efb21fa2da44d0",
+    "name": "Backis",
+    "geometry": {
+    "type": "Point",
+    "coordinates": [
+    50.819691,
+    6.97609
+    ]
+    },
+    "oeffnungszeiten": [ ],
+    "tags": [
+    "Rauchen",
+    "Beste",
+    "Reissdorf"
+    ]
+    },
+    {
+    "_id": "5c1f877f76efb21fa2da44d1",
+    "name": "Sonnenberg",
+    "geometry": {
+    "type": "Point",
+    "coordinates": [
+    50.823639,
+    6.98706
+    ]
+    },
+    "oeffnungszeiten": [ ],
+    "tags": [
+    "Biergarten",
+    "Griechisch",
+    "Gaffel",
+    "Public Viewing"
+    ]
+    },
+    {
+    "_id": "5c1f877f76efb21fa2da44d2",
+    "name": "Wirtzhaus",
+    "geometry": {
+    "type": "Point",
+    "coordinates": [
+    50.81254,
+    6.96822
+    ]
+    },
+    "oeffnungszeiten": [ ],
+    "tags": [
+    "Biergarten",
+    "Bürgerlich",
+    "Gaffel",
+    "Weihnachtsmarkt"
+    ]
+    }
+    ]
