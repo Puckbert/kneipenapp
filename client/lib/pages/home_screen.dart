@@ -10,38 +10,59 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Future <List<Kneipe>> _getKneipen() async {
+    var responseData = await http.get("http://192.168.122.1:8080/alleKneipen");
+
+    var jsonData = json.decode(responseData.body);
+
+    List<Kneipe> kneipen = [];
+
+    for(var k in jsonData){
+      Kneipe kneipe = new Kneipe(name: k["name"], oeffnungszeiten: k["oeffnungszeiten"], koordinaten: k["geometry"]["coordinates"]);
+      kneipen.add(kneipe);
+    }
+
+    print(kneipen.length);
+
+    return kneipen;
+  }
+
   @override 
   void initState() {
     super.initState();
-
-    fetchKneipen();
   }
 
 //----------------- Build Methode -----------------------------------------//
+
   @override
   Widget build(BuildContext context) {
-    return new Container(
-        child: ListView.builder(
-      padding: EdgeInsets.all(20.0),
-      itemExtent: 100.0,
-      itemBuilder: (BuildContext context, int index) {
-        return Text(
-          "entry $index",
-          style: TextStyle(fontSize: 15.0),
-        );
-      },
-    ) //ListView.builder
-        );
+    return new Scaffold(
+      body: new Container(
+        child: FutureBuilder(
+          future: _getKneipen(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if(snapshot.data == null){
+              return new Container(
+                child: new Center(
+                  child: Text("Loading...")
+                ),
+              );
+            } else {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    title: new Text(snapshot.data[index].koordinaten[1].toString()),
+                  );
+                },
+              );
+            }
+          },
+        ),
+      ),
+    );
   }
 
 // ----------------- Funktionen -------------------------------------------//
-  Future<Kneipe> fetchKneipen() async {
-    final response = await http.get("http://192.168.0.17:8080/alleKneipen");
 
-    if (response.statusCode == 200) {
-      return Kneipe.fromJson(json.decode(response.body));
-    } else {
-      throw Exception('Failed to Load Data!');
-    }
-  }
 }
