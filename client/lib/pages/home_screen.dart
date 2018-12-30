@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Kneipe> kneipen = [];
 
     for(var k in jsonData){
-      Kneipe kneipe = new Kneipe(name: k["name"], oeffnungszeiten: k["oeffnungszeiten"], koordinaten: k["geometry"]["coordinates"]);
+      Kneipe kneipe = new Kneipe(name: k["name"], oeffnungszeiten: k["oeffnungszeiten"], koordinaten: k["geometry"]["coordinates"], tags: k["tags"]);
       kneipen.add(kneipe);
     }
 
@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
-                    title: new Text(snapshot.data[index].koordinaten[1].toString()),
+                    title: new Text(snapshot.data[index].name)
                   );
                 },
               );

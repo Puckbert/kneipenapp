@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:flutter/services.dart';
 
+// TODO: Update Get Request mit Body, Maps in Dart
+
 class UmkreisScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _UmkreisScreenState();
@@ -59,7 +61,7 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
     widgets = new List();
     widgets.add(new Center(
         child: new Text(_location != null
-            ? 'Start location: $_currentLocation\n'
+            ? 'Start location: ${_currentLocation['longitude']}\n'
             : 'Error: $error\n')));
 
     widgets.add(new Center(
