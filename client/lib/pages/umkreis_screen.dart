@@ -59,11 +59,12 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
   Widget build(BuildContext context) {
     List<Widget> widgets;
     widgets = new List();
-    widgets.add(new Center(
-        child: new Text(_location != null
-            ? 'Start location: ${_currentLocation['longitude']}\n'
-            : 'Error: $error\n')));
-
+    if (_currentLocation != null) {
+      widgets.add(new Center(
+          child: new Text(_location != null
+              ? 'Start location: ${_currentLocation['longitude']}\n'
+              : 'Error: $error\n')));
+    }
     widgets.add(new Center(
         child: new Text(
             _permission ? 'Has permission : Yes' : "Has permission : No")));
