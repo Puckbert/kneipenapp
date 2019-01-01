@@ -52,7 +52,6 @@ app.get('/getKneipeInUmkreis', (req, res) => {
 
 app.get('/alleKneipen', (req, res) => {
     kneipen.find().then(alleKneipen => {
-        console.log(alleKneipen);
         res.send(alleKneipen);
     })
 })

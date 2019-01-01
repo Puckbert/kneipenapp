@@ -38,7 +38,7 @@ class _KneipenListeState extends State<KneipenListe> {
       body: new Padding(
         padding: const EdgeInsets.all(20.0),
         child: new Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             new Slider(
               activeColor: Colors.red,
@@ -50,23 +50,31 @@ class _KneipenListeState extends State<KneipenListe> {
               value: _sliderValue,
             ),
             new Center(
-              child: Text('${_sliderValue.toInt()} km Radius', style: TextStyle(fontSize: 30.0),),
+              child: Text(
+                '${_sliderValue.toInt()} km Radius',
+                style: TextStyle(fontSize: 30.0),
+              ),
             ),
-            new RefreshIndicator(
+            new Expanded(
+                child: new RefreshIndicator(
               onRefresh: _getKneipenData,
               child: new ListView.builder(
                 itemCount: _kneipen == null ? 0 : _kneipen.length,
                 itemBuilder: (context, index) {
-                  return FlatButton(
-                    child: new KneipenTile(_kneipen, index),
-                    padding: const EdgeInsets.all(0.0),
-                    onPressed: () {_pressed();},
-                    // TODO: Implement onPressed -> Link zur Kneipe!
-                    color: Colors.white,
-                  );
+                  return new Wrap(children: <Widget>[
+                    new FlatButton(
+                      child: new KneipenTile(_kneipen, index),
+                      padding: const EdgeInsets.all(0.0),
+                      onPressed: () {
+                        _pressed();
+                      },
+                      // TODO: Implement onPressed -> Link zur Kneipe!
+                      color: Colors.white,
+                    )
+                  ]);
                 },
               ),
-            )
+            ))
           ],
         ),
       ),
@@ -81,6 +89,6 @@ class _KneipenListeState extends State<KneipenListe> {
   }
 }
 
-void _pressed () {
+void _pressed() {
   print("PRESSSEDED!");
 }
