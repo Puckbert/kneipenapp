@@ -16,19 +16,21 @@ class _KneipenListeState extends State<KneipenListe> {
   double _sliderValue = 5.0;
   var _kneipen;
 
-  void getKneipenData() async {
-    var data = await getKneipenJson();
+  Future<Null> _getKneipenData() async {
+    var data = await _getKneipenJson();
 
     setState(() {
       _kneipen = data;
     });
+
+    return data;
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getKneipenData();
+    _getKneipenData();
   }
 
   @override
@@ -51,7 +53,8 @@ class _KneipenListeState extends State<KneipenListe> {
             new Center(
               child: Text('${_sliderValue.toInt()} km Radius', style: TextStyle(fontSize: 30.0),),
             ),
-            new Expanded(
+            new RefreshIndicator(
+              onRefresh: _getKneipenData,
               child: new ListView.builder(
                 itemCount: _kneipen == null ? 0 : _kneipen.length,
                 itemBuilder: (context, index) {
@@ -71,7 +74,7 @@ class _KneipenListeState extends State<KneipenListe> {
     );
   }
 
-  Future<List> getKneipenJson() async {
+  Future<List> _getKneipenJson() async {
     var url = "http://192.168.122.1:8080/alleKneipen";
     http.Response response = await http.get(url);
     print(response.body);

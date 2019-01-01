@@ -9,6 +9,7 @@ class KneipenTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.all(10.0),
         padding: const EdgeInsets.all(0.0),
         child: new Row(
           mainAxisSize: MainAxisSize.max,
@@ -16,7 +17,7 @@ class KneipenTile extends StatelessWidget {
           children: <Widget>[
             new Column(
               children: <Widget>[
-                new Image.network(_kneipen[index]['image'], height: 300, width: 100,)
+                new Image.network('https://via.placeholder.com/150', fit: BoxFit.cover)
               ],
             ),
             new Column(
