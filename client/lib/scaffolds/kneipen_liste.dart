@@ -52,7 +52,7 @@ class _KneipenListeState extends State<KneipenListe> {
             new Center(
               child: Text(
                 '${_sliderValue.toInt()} km Radius',
-                style: TextStyle(fontSize: 30.0),
+                style: TextStyle(fontSize: 25.0),
               ),
             ),
             new Expanded(

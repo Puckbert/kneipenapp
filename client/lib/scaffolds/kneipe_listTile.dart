@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class KneipenTile extends StatelessWidget {
   final _kneipen;
@@ -9,6 +10,7 @@ class KneipenTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.red,
         margin: const EdgeInsets.all(10.0),
         child: new Row(
           children: <Widget>[
@@ -44,17 +46,9 @@ class KneipenTile extends StatelessWidget {
                   children: <Widget>[
                     new Container(
                         padding: const EdgeInsets.all(0.0),
-                        color: Colors.red,
-                        child: new Wrap(
-                            direction: Axis.horizontal,
-                            children: <Widget>[
-                              new Text(
-                                buildKneipenTagString(_kneipen[index]['tags']),
-                                textAlign: TextAlign.left,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              )
-                            ]))
+                        child: new AutoSizeText(
+                          buildKneipenTagString(_kneipen[index]['tags']),
+                        ))
                   ],
                 )
               ],
@@ -66,7 +60,6 @@ class KneipenTile extends StatelessWidget {
   String buildKneipenTagString(List tags) {
     String build = '';
     for (var t in tags) {
-      print(t);
       build = t + ', ' + build;
     }
     return build;
