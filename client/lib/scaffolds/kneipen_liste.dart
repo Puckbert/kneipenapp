@@ -28,7 +28,6 @@ class _KneipenListeState extends State<KneipenListe> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _getKneipenData();
   }
