@@ -10,14 +10,19 @@ class KneipenTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+
         margin: const EdgeInsets.all(10.0),
         child: new Row(
           children: <Widget>[
             new Column(
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                new Image.network('https://via.placeholder.com/150',
-                    fit: BoxFit.cover)
+                new Wrap(
+                  children: <Widget>[
+                    new Image.network('https://via.placeholder.com/150',
+                        fit: BoxFit.cover)
+                  ],
+                )
               ],
             ),
             new Divider(
@@ -28,28 +33,26 @@ class KneipenTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                new Row(
-                  children: <Widget>[
-                    new Wrap(children: <Widget>[
-                      new Text(
-                        _kneipen[index]['name'],
-                        style: new TextStyle(fontSize: 20.0),
-                      ),
-                    ])
-                  ],
-                ),
+                new Row(children: <Widget>[
+                  new Container(
+                    child: new Text(
+                      _kneipen[index]['name'],
+                      style: new TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                      softWrap: true,
+                    ),
+                  ),
+                ]),
                 new Divider(
-                  height: 20.0,
+                  height: 60.0,
                 ),
-                new Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    new Container(
-                        padding: const EdgeInsets.all(0.0),
-                        child: new AutoSizeText(
-                          buildKneipenTagString(_kneipen[index]['tags']),
-                        ))
-                  ],
+                new Container(
+                  child: new Container(
+                      padding: const EdgeInsets.all(0.0),
+                      child: new Text(
+                        buildKneipenTagString(_kneipen[index]['tags']),
+                        style: new TextStyle(color: Colors.grey[500]),
+                      )),
                 )
               ],
             ))

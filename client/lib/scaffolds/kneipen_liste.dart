@@ -16,7 +16,7 @@ class _KneipenListeState extends State<KneipenListe> {
   double _sliderValue = 5.0;
   var _kneipen;
 
-  Future<Null> _getKneipenData() async {
+  Future<List> _getKneipenData() async {
     var data = await _getKneipenJson();
 
     setState(() {
@@ -36,42 +36,40 @@ class _KneipenListeState extends State<KneipenListe> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: new Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(5.0),
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new Slider(
-              activeColor: Colors.red,
-              min: 0.0,
-              max: 15.0,
-              onChanged: (newRadius) {
-                setState(() => _sliderValue = newRadius);
-              },
-              value: _sliderValue,
-            ),
-            new Center(
-              child: Text(
-                '${_sliderValue.toInt()} km Radius',
-                style: TextStyle(fontSize: 25.0),
-              ),
-            ),
+            // new Slider(
+            //   activeColor: Colors.red,
+            //   min: 0.0,
+            //   max: 15.0,
+            //   onChanged: (newRadius) {
+            //     setState(() => _sliderValue = newRadius);
+            //   },
+            //   value: _sliderValue,
+            // ),
+            // new Center(
+            //   child: Text(
+            //     '${_sliderValue.toInt()} km Radius',
+            //     style: TextStyle(fontSize: 25.0),
+            //   ),
+            // ),
             new Expanded(
                 child: new RefreshIndicator(
               onRefresh: _getKneipenData,
               child: new ListView.builder(
                 itemCount: _kneipen == null ? 0 : _kneipen.length,
                 itemBuilder: (context, index) {
-                  return new Wrap(children: <Widget>[
-                    new FlatButton(
-                      child: new KneipenTile(_kneipen, index),
-                      padding: const EdgeInsets.all(0.0),
-                      onPressed: () {
-                        _pressed();
-                      },
-                      // TODO: Implement onPressed -> Link zur Kneipe!
-                      color: Colors.white,
-                    )
-                  ]);
+                  return new FlatButton(
+                    child: new KneipenTile(_kneipen, index),
+                    padding: const EdgeInsets.all(0.0),
+                    onPressed: () {
+                      _pressed();
+                    },
+                    // TODO: Implement onPressed -> Link zur Kneipe!
+                    color: Colors.white,
+                  );
                 },
               ),
             ))

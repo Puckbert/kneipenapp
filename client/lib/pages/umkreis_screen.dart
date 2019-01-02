@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:flutter/services.dart';
+import 'package:client/scaffolds/kneipen_liste.dart';
 
 // TODO: Update Get Request mit Body, Maps in Dart
 
@@ -73,9 +74,10 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
         debugShowCheckedModeBanner: false,
         home: new Scaffold(
             body: new Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: widgets,
-        )));
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+              new KneipenListe(),
+            ])));
   }
 }
