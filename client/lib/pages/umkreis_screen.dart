@@ -73,11 +73,9 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
     return new MaterialApp(
         debugShowCheckedModeBanner: false,
         home: new Scaffold(
-            body: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-              new KneipenListe(),
-            ])));
+            body: 
+              new KneipenListe.empty()
+        )
+    );  
   }
 }

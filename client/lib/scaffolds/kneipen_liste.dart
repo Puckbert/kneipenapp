@@ -6,6 +6,11 @@ import 'package:http/http.dart' as http;
 import 'package:client/scaffolds/kneipe_listTile.dart';
 
 class KneipenListe extends StatefulWidget {
+  List _kneipen;
+
+  KneipenListe(this._kneipen);
+  KneipenListe.empty();
+
   @override
   _KneipenListeState createState() {
     return new _KneipenListeState();

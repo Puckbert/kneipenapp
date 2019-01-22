@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Alle Kneipen',
-      home: new KneipenListe(),
+      home: new KneipenListe.empty(),
     );
   }
 
