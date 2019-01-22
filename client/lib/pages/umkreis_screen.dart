@@ -18,6 +18,7 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
   bool _permission = false;
   String error;
   StreamSubscription<Map<String, double>> _locationSubscription;
+  double _sliderValue = 5.0;
 
   @override
   void initState() {
@@ -66,16 +67,14 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
               ? 'Start location: ${_currentLocation['longitude']}\n'
               : 'Error: $error\n')));
     }
-    widgets.add(new Center(
-        child: new Text(
-            _permission ? 'Has permission : Yes' : "Has permission : No")));
-
     return new MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: new Scaffold(
-            body: 
-              new KneipenListe.empty()
+        home: 
+        new Center(
+          child: new Text(_location != null
+              ? 'Start location: ${_currentLocation['latitude']}\n'
+              : 'Error: $error\n')
         )
-    );  
+    );
   }
 }

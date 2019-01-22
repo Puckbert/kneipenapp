@@ -4,8 +4,12 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Center(
-      child: new Text("Favorites!",
-      style: new TextStyle(fontSize: 20.0),)
+      child: new RaisedButton(
+        onPressed: () {
+          print("Login");
+        },
+        child: new Text("Login Baby"),
+      )
     );
   }
 }
