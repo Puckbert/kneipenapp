@@ -34,7 +34,10 @@ class _KneipenListeState extends State<KneipenListe> {
   @override
   void initState() {
     super.initState();
-    _getKneipenData();
+    if (_kneipen == null)
+      _getKneipenData();
+    else
+      print('Kneipen Liste wurde übergeben!');
   }
 
   @override

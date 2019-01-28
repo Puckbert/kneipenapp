@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:flutter/services.dart';
 import 'package:client/scaffolds/kneipen_liste.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 // TODO: Update Get Request mit Body, Maps in Dart
 
@@ -18,7 +21,7 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
   bool _permission = false;
   String error;
   StreamSubscription<Map<String, double>> _locationSubscription;
-  double _sliderValue = 5.0;
+  List _kneipenListeMitRadius;
 
   @override
   void initState() {
@@ -34,6 +37,8 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
         });
       }
     });
+
+    getKneipenMitUmkreisUndRadius();
   }
 
   initPlatformState() async {
@@ -69,12 +74,14 @@ class _UmkreisScreenState extends State<UmkreisScreen> {
     }
     return new MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: 
-        new Center(
-          child: new Text(_location != null
-              ? 'Start location: ${_currentLocation['latitude']}\n'
-              : 'Error: $error\n')
-        )
-    );
+        home: new KneipenListe(_kneipenListeMitRadius));
+  }
+
+  Future<List> getKneipenMitUmkreisUndRadius() async {
+    var url =
+        "http://192.168.122.1:8080/getKneipeInUmkreis?lng=${_currentLocation['longitude']}&lat=${_currentLocation['latitude']}&rad=200";
+    http.Response response = await http.get(url);
+    print(response.body);
+    return json.decode(response.body);
   }
 }

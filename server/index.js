@@ -44,6 +44,7 @@ app.get('/getKneipeInUmkreis', (req, res) => {
         maxDistance: parseFloat(req.query.rad),
         spherical: true
     }).then((kneipenListe) => {
+        console.log(kneipenListe);
         res.send(kneipenListe);
     }).catch(error => {
         console.log('CAUGHT!');
