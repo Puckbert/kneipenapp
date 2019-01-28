@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:client/pages/umkreis_screen.dart';
 import 'package:client/pages/favorites_screen.dart';
 import 'package:client/pages/home_screen.dart';
 import 'package:location/location.dart';
 import 'package:flutter/services.dart';
+import 'package:client/pages/maps_screen.dart';
 
 class PubHUBHome extends StatefulWidget {
   @override
@@ -46,7 +46,7 @@ class _PubHUBHomeState extends State<PubHUBHome>
       body: new TabBarView(
         controller: _tabController,
         children: <Widget>[
-          new UmkreisScreen(),
+          new MapsScreen(),
           new FavoriteScreen(),
           new HomeScreen(),
         ],
